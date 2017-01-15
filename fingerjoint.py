@@ -7,7 +7,7 @@ class FingerJointMaker(object):
     Creates SVGs of laser-cuttable components that add up to boxes built with finger joints.
 
     width: Width of the panel. Refers to interior dimension.
-    height: Height of the panel. Refers to interior dimention.
+    height: Height of the panel. Refers to interior dimension.
     finger_width: How wide each finger joint is. Often set to the material thickness.
     suppressed_fingers: length-4 tuple of ints; numbers of fingers to lop off each side (CSS ordering). Often
     aesthetically desirable.
