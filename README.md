@@ -39,6 +39,11 @@ Requirements
 ------------
 * numpy
 
+Test
+----
+
+    nosetests
+
 
 Credits
 -------
