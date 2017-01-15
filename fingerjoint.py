@@ -27,7 +27,7 @@ class FingerJointMaker(object):
         self.height = height
         self.finger_width = finger_width
         self.suppressed_fingers = suppressed_fingers
-        self.kerf = 0
+        self.kerf = kerf
         self.finger_width_safety_margin = finger_width_safety_margin
         self.svg_width = None
         self.svg_height = None
