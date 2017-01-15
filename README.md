@@ -43,6 +43,7 @@ Requirements
 Credits
 -------
 Tom Lee <thomas.j.lee@gmail.com>
+Victor Engmark <victor.engmark@gmail.com>
 
 
 License
