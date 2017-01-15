@@ -165,7 +165,7 @@ class FingerJointMaker(object):
 
 
 def test():
-    FJP = FingerJointPanel(300, 150, 20, suppressed_fingers=(3, 0, 3, 0), kerf=1, finger_width_safety_margin=5)
+    FJP = FingerJointMaker(300, 150, 20, suppressed_fingers=(3, 0, 3, 0), kerf=1, finger_width_safety_margin=5)
     FJP.make()
     FJP.svg(filename='test.svg')
     FJP.embed_svgs_in_html((FJP.svg(),), filename='test.html')
