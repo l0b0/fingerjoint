@@ -36,24 +36,24 @@ class FingerJointMaker(object):
 
         super(FingerJointMaker, self).__init__()
 
-    def _make_edge(self, length, finger_width, suppressed_fingers, kerf, finger_width_safety_margin):
+    def _make_edge(self, length, suppressed_fingers):
         """ Internal method to construct an edge beginning at the origin """
         points = np.array([[0.0, 0.0]], float)
 
-        num_fingers = int(math.floor(length / finger_width) - suppressed_fingers)
+        num_fingers = int(math.floor(length / self.finger_width) - suppressed_fingers)
         if (num_fingers % 2) == 0:
             num_fingers -= 1
 
-        spare_change = length - (num_fingers * finger_width)
+        spare_change = length - (num_fingers * self.finger_width)
 
-        current_x = (kerf + spare_change) / 2.0
-        y = (kerf / 2.0)
+        current_x = (self.kerf + spare_change) / 2.0
+        y = (self.kerf / 2.0)
 
-        y_offset = finger_width + finger_width_safety_margin
-        x_offset_abs = kerf / 2.0
+        y_offset = self.finger_width + self.finger_width_safety_margin
+        x_offset_abs = self.kerf / 2.0
 
         i = 0
-        while current_x <= ((length + kerf) - (spare_change / 2.0)):
+        while current_x <= ((length + self.kerf) - (spare_change / 2.0)):
 
             if (i % 2) == 0:
                 # this is a finger interval!
@@ -64,11 +64,11 @@ class FingerJointMaker(object):
                 x_offset = x_offset_abs
                 points = np.append(points, [[current_x + x_offset, y + y_offset], [current_x + x_offset, y]], 0)
 
-            current_x += finger_width
+            current_x += self.finger_width
 
             i += 1
 
-        points = np.append(points, [[length + kerf, y]], 0)
+        points = np.append(points, [[length + self.kerf, y]], 0)
 
         return points
 
@@ -76,8 +76,7 @@ class FingerJointMaker(object):
         """ Construct a panel in the object's points collection """
         edge_length = (self.width, self.height, self.width, self.height)
         for (i, el) in enumerate(edge_length):
-            new_points = self._make_edge(el, self.finger_width, self.suppressed_fingers[i], self.kerf,
-                                         self.finger_width_safety_margin)
+            new_points = self._make_edge(el, self.suppressed_fingers[i])
             if self.points is None:
                 self.points = new_points.copy()
             else:
