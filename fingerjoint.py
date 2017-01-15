@@ -167,10 +167,11 @@ class FingerJointMaker(object):
 
 
 def test():
-    FJP = FingerJointMaker(300, 150, 20, suppressed_fingers=(3, 0, 3, 0), kerf=1, finger_width_safety_margin=5)
-    FJP.make()
-    FJP.svg(filename='test.svg')
-    FJP.embed_svgs_in_html((FJP.svg(),), filename='test.html')
+    finger_joint_maker = FingerJointMaker(
+        300, 150, 20, suppressed_fingers=(3, 0, 3, 0), kerf=1, finger_width_safety_margin=5)
+    finger_joint_maker.make()
+    finger_joint_maker.svg(filename='test.svg')
+    finger_joint_maker.embed_svgs_in_html((finger_joint_maker.svg(),), filename='test.html')
 
 
 if __name__ == '__main__':
