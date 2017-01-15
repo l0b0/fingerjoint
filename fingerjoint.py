@@ -1,5 +1,7 @@
+import argparse
 import math
 import numpy as np
+import sys
 
 
 class FingerJointMaker(object):
@@ -165,13 +167,36 @@ class FingerJointMaker(object):
             return s
 
 
-def test():
+def parse_arguments(arguments):
+    argument_parser = argparse.ArgumentParser()
+    argument_parser.add_argument('--width', required=True, type=float)
+    argument_parser.add_argument('--height', required=True, type=float)
+    argument_parser.add_argument('--finger_width', required=True, type=float)
+    argument_parser.add_argument(
+        '--suppressed_fingers', type=comma_separated_list_of_four_integers, default=(0, 0, 0, 0))
+    argument_parser.add_argument('--kerf', default=0, type=float)
+    argument_parser.add_argument('--finger_width_safety_margin', default=0, type=float)
+    return argument_parser.parse_args(args=arguments)
+
+
+def comma_separated_list_of_four_integers(string):
+    elements = string.split(',')
+    assert len(elements) == 4
+    return map(int, map(str.strip, elements))
+
+
+def main():
+    arguments = parse_arguments(sys.argv[1:])
     finger_joint_maker = FingerJointMaker(
-        300, 150, 20, suppressed_fingers=(3, 0, 3, 0), kerf=1, finger_width_safety_margin=5)
+        arguments.width,
+        arguments.height,
+        arguments.finger_width,
+        suppressed_fingers=arguments.suppressed_fingers,
+        kerf=arguments.kerf,
+        finger_width_safety_margin=arguments.finger_width_safety_margin)
     finger_joint_maker.make()
-    finger_joint_maker.svg(filename='test.svg')
-    finger_joint_maker.embed_svgs_in_html((finger_joint_maker.svg(),), filename='test.html')
+    print finger_joint_maker.svg()
 
 
 if __name__ == '__main__':
-    test()
+    main()
