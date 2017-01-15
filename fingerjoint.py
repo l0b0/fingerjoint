@@ -119,7 +119,7 @@ class FingerJointMaker(object):
 
         s = '<svg width="%d%s" height="%d%s">' % (self.svg_width, self.SVG_UNIT, self.svg_height, self.SVG_UNIT)
 
-        s = s + """
+        s += """
         <defs>
             <style type="text/css"><![CDATA[
               line {
