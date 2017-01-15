@@ -9,9 +9,11 @@ class FingerJointMaker(object):
     width: Width of the panel. Refers to interior dimension.
     height: Height of the panel. Refers to interior dimention.
     finger_width: How wide each finger joint is. Often set to the material thickness.
-    suppressed_fingers: length-4 tuple of ints; numbers of fingers to lop off each side (CSS ordering). Often aesthetically desirable.
+    suppressed_fingers: length-4 tuple of ints; numbers of fingers to lop off each side (CSS ordering). Often
+    aesthetically desirable.
     kerf: Anticipated width of the material lost to the cutting beam.
-    finger_width_safety_margin: Additional material to add to each finger. Useful for accounting for unanticipated variations in material thickness. Often set to 10% of finger_width.
+    finger_width_safety_margin: Additional material to add to each finger. Useful for accounting for unanticipated
+    variations in material thickness. Often set to 10% of finger_width.
     """
 
     SVG_UNIT = 'mm'
@@ -19,8 +21,8 @@ class FingerJointMaker(object):
     STROKE_COLOR = 'black'
     SVG_MARGIN = 10  # purely for prettiness of the output SVGs -- padding around emitted points
 
-    def __init__(self, width, height, finger_width, suppressed_fingers=(0, 0, 0, 0), kerf=0,
-                 finger_width_safety_margin=0):
+    def __init__(
+            self, width, height, finger_width, suppressed_fingers=(0, 0, 0, 0), kerf=0, finger_width_safety_margin=0):
         self.width = width
         self.height = height
         self.finger_width = finger_width
