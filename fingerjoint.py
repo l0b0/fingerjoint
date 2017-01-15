@@ -40,7 +40,7 @@ class FingerJointMaker(object):
 
         num_fingers = int(math.floor(length / finger_width) - suppressed_fingers)
         if (num_fingers % 2) == 0:
-            num_fingers = num_fingers - 1
+            num_fingers -= 1
 
         spare_change = length - (num_fingers * finger_width)
 
@@ -62,9 +62,9 @@ class FingerJointMaker(object):
                 x_offset = x_offset_abs
                 points = np.append(points, [[current_x + x_offset, y + y_offset], [current_x + x_offset, y]], 0)
 
-            current_x = current_x + finger_width
+            current_x += finger_width
 
-            i = i + 1
+            i += 1
 
         points = np.append(points, [[length + kerf, y]], 0)
 
@@ -91,7 +91,7 @@ class FingerJointMaker(object):
 
     def translate(self, x, y):
         """ Move the collection of points by x and y """
-        self.points = self.points + np.array([x, y])
+        self.points += np.array([x, y])
 
     def center_points(self):
         """ Move the points into positive coordinate space and set the SVG viewport bounds """
@@ -140,7 +140,7 @@ class FingerJointMaker(object):
             y2 = self.points[(i + 1) % len(self.points)][1]
             s += '<line x1="%f%s" y1="%f%s" x2="%f%s" y2="%f%s" />' % (
                 x1, self.SVG_UNIT, y1, self.SVG_UNIT, x2, self.SVG_UNIT, y2, self.SVG_UNIT)
-        s = s + '</svg>'
+        s += '</svg>'
 
         if filename is not None:
             f = open(filename, 'w')
