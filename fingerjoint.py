@@ -36,8 +36,6 @@ class FingerJointMaker(object):
 
         self.points = None
 
-        super(FingerJointMaker, self).__init__()
-
     def _make_edge(self, length, suppressed_fingers):
         """ Internal method to construct an edge beginning at the origin """
         points = np.array([[0.0, 0.0]], float)
